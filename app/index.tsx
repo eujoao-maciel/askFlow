@@ -1,13 +1,11 @@
 import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { HomeHeader } from "./src/components/HomeHeader";
 
 export default function Index() {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.logo}>askFlow</Text>
-        <Text style={styles.subtitle}>ASK · CREATE REQUEST</Text>
-      </View>
+      <HomeHeader />
 
       <View style={styles.card}>
         <TextInput
@@ -40,25 +38,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 110,
     paddingHorizontal: 24,
-  },
-
-  header: {
-    width: "100%",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-
-  logo: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#2f5f80",
-    marginBottom: 10,
-  },
-
-  subtitle: {
-    alignItems: "center",
-    fontSize: 11,
-    color: "#8a98a5",
   },
 
   card: {
