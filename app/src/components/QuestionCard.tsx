@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
-export const QuestionCard = () => {
+export const QuestionCard = ({ onOpenModal }: { onOpenModal: () => void }) => {
     return (
         <View style={styles.card}>
             <TextInput
@@ -12,7 +12,7 @@ export const QuestionCard = () => {
             />
 
             <View style={styles.actions}>
-                <Pressable style={styles.iconButton}>
+                <Pressable style={styles.iconButton} onPress={onOpenModal}>
                     <Ionicons name="menu" size={22} color="#3e6785" />
                 </Pressable>
 
