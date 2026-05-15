@@ -33,6 +33,7 @@ export const AskFlowModal = ({ isVisible, onClose }: Props) => {
                     {step === 2 && (
                         <>
                             <ResponseWay
+                                prevStep={() => setStep(1)}
                                 nextStep={() => setStep(3)}
                                 handleClose={handleClose}
                             />

@@ -1,22 +1,22 @@
 import { View, Text, Pressable, StyleSheet } from "react-native"
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 type Props = {
-    nextStep: () => void,
+    prevStep: () => void
+    nextStep: () => void
     handleClose: () => void
 }
 
-export const ResponseWay = ({ nextStep, handleClose}: Props) => {
+export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
     return (
         <View style={styles.modalBox}>
             <View style={styles.header}>
-                <Text style={styles.title}>
-                   Como você quer sua resposta? 
-                </Text>
+                <Text style={styles.title}>Como você quer sua resposta?</Text>
             </View>
 
             <View style={styles.footer}>
-                <Pressable onPress={handleClose} style={styles.closeButton}>
-                    <Text>Close</Text>
+                <Pressable onPress={prevStep} style={styles.closeButton}>
+                    <Ionicons name="arrow-back" size={16} color="black" />
                 </Pressable>
 
                 <Pressable onPress={nextStep} style={styles.confirmButton}>
