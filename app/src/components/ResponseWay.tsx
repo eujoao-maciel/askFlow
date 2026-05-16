@@ -16,7 +16,12 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
 
             <View style={styles.footer}>
                 <Pressable onPress={prevStep} style={styles.closeButton}>
-                    <Ionicons style={styles.arrowBack} name="arrow-back" size={16} color="black" />
+                    <Ionicons
+                        style={styles.arrowBack}
+                        name="arrow-back"
+                        size={16}
+                        color="black"
+                    />
                 </Pressable>
 
                 <Pressable onPress={nextStep} style={styles.confirmButton}>
@@ -49,7 +54,8 @@ const styles = StyleSheet.create({
 
     footer: {
         flexDirection: "row",
-        justifyContent: "space-between",
+        alignItems: "center",
+        justifyContent: "center",
         gap: 12,
     },
 
