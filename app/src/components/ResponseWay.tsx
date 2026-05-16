@@ -16,11 +16,11 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
 
             <View style={styles.footer}>
                 <Pressable onPress={prevStep} style={styles.closeButton}>
-                    <Ionicons name="arrow-back" size={16} color="black" />
+                    <Ionicons style={styles.arrowBack} name="arrow-back" size={16} color="black" />
                 </Pressable>
 
                 <Pressable onPress={nextStep} style={styles.confirmButton}>
-                    <Text>Confirm</Text>
+                    <Text style={styles.confirmButtonText}>Confirm</Text>
                 </Pressable>
             </View>
         </View>
@@ -55,17 +55,32 @@ const styles = StyleSheet.create({
 
     closeButton: {
         flex: 1,
-        backgroundColor: "#3e6785",
-        padding: 14,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#e7edf2",
+        paddingVertical: 12,
+        paddingHorizontal: 24,
         borderRadius: 12,
         alignItems: "center",
     },
 
     confirmButton: {
         flex: 1,
-        backgroundColor: "#e7edf2",
-        padding: 14,
+        backgroundColor: "#3e6785",
+        paddingVertical: 12,
+        paddingHorizontal: 28,
         borderRadius: 12,
         alignItems: "center",
+    },
+
+    arrowBack: {
+        fontSize: 16,
+        fontWeight: "500",
+    },
+
+    confirmButtonText: {
+        fontSize: 16,
+        fontWeight: "500",
+        color: "#fff",
     },
 })
