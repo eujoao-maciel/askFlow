@@ -8,13 +8,21 @@ type Props = {
 };
 
 const options = [
-  { id: "professor", label: "Professor\nParticilar", icon: "book-outline" },
+  {
+    id: "professor",
+    label: "Professor\nParticular",
+    icon: "book-outline",
+  },
   {
     id: "consultor",
     label: "Consultor\nAcadêmico",
     icon: "chatbubble-ellipses-outline",
   },
-  { id: "tutor", label: "Tutor\Online", icon: "school-outline" },
+  {
+    id: "tutor",
+    label: "Tutor\nOnline",
+    icon: "school-outline",
+  },
   {
     id: "carreira",
     label: "Especialista\nem Carreira",
@@ -29,26 +37,37 @@ export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
     <View style={styles.modalBox}>
       <View style={styles.header}>
         <Text style={styles.title}>
-          Que tipo de profissional você quer escolher?
+          Que tipo de profissional deve responder?
         </Text>
       </View>
 
-      <View style={styles.optionsGrid}>
+      <View style={styles.optionGrid}>
         {options.map((option) => {
           const isSelected = selectedOption === option.id;
 
           return (
             <Pressable
               key={option.id}
-              style={[styles.optionCard, isSelected && styles.optionCardSelected]}
               onPress={() => setSelectedOption(option.id)}
+              style={[
+                styles.optionCard,
+                isSelected && styles.optionCardSelected,
+              ]}
             >
               <Ionicons
-                name={option.icon}
-                size={22}
-                color={isSelected ? "#2f5d7c" : "#46657c"}
+                name={option.icon as any}
+                size={18}
+                color={isSelected ? "#315f7d" : "#5b7486"}
               />
-              <Text style={styles.optionText}>{option.label}</Text>
+
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}
+              >
+                {option.label}
+              </Text>
             </Pressable>
           );
         })}
@@ -60,7 +79,7 @@ export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
         </Pressable>
 
         <Pressable onPress={nextStep} style={styles.confirmButton}>
-          <Text style={styles.confirmButtonText}>Confirm</Text>
+          <Text style={styles.confirmButtonText}>Continue</Text>
         </Pressable>
       </View>
     </View>
@@ -69,90 +88,98 @@ export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
 
 const styles = StyleSheet.create({
   modalBox: {
-    width: "85%",
-    minHeight: 300,
+    width: "90%",
     backgroundColor: "#fff",
-    padding: 24,
-    borderRadius: 20,
-    justifyContent: "space-between",
+    borderRadius: 18,
+    padding: 18,
+    gap: 18,
   },
 
   header: {
-    gap: 16,
+    alignItems: "center",
   },
 
   title: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: "600",
     textAlign: "center",
+    color: "#23313d",
+    lineHeight: 24,
+  },
+
+  optionGrid: {
+    gap: 10,
+  },
+
+  optionCard: {
+    width: "100%",
+    minHeight: 68,
+
+    borderWidth: 1,
+    borderColor: "#d4dde4",
+    borderRadius: 14,
+
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+
+    backgroundColor: "#fff",
+  },
+
+  optionCardSelected: {
+    backgroundColor: "#eef5fa",
+    borderColor: "#3e6785",
+  },
+
+  optionText: {
+    flex: 1,
+    fontSize: 12,
+    lineHeight: 16,
+    color: "#33414d",
+    fontWeight: "500",
+  },
+
+  optionTextSelected: {
+    color: "#234b66",
   },
 
   footer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 14,
+    gap: 10,
   },
 
   closeButton: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#e7edf2",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    backgroundColor: "#edf2f5",
     borderRadius: 12,
+    paddingVertical: 12,
+
+    justifyContent: "center",
     alignItems: "center",
   },
 
   confirmButton: {
     flex: 1,
     backgroundColor: "#3e6785",
-    paddingVertical: 12,
-    paddingHorizontal: 28,
     borderRadius: 12,
+    paddingVertical: 12,
+
+    justifyContent: "center",
     alignItems: "center",
   },
 
   closeButtonText: {
-    fontSize: 16,
-    fontWeight: "500",
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#31414d",
   },
 
   confirmButtonText: {
-    fontSize: 16,
-    fontWeight: "500",
+    fontSize: 14,
+    fontWeight: "600",
     color: "#fff",
   },
-
-  optionGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 10,
-  },
-
-  optionCard: {
-    width: "48%",
-    minHeight: 58,
-    borderWidth: 1,
-    borderColor: "#cfd6dc",
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    backgroundColor: "#fff",
-  },
-
-  optionCardSelected: {
-    borderColor: "#3e6785",
-    backgroundColor: "#eef5fb",
-  },
- 
-  optionText: {
-    fontSize: 12,
-    color: "#2f3a40",
-    flexShrink: 1,
-  }
- 
 });
