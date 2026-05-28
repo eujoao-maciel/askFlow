@@ -7,6 +7,14 @@ type Props = {
     handleClose: () => void
 }
 
+const responseWayOptions = [
+    {
+        id: "formal",
+        label: "Formal",
+        icon: ""
+    }
+]
+
 export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
     return (
         <View style={styles.modalBox}>
