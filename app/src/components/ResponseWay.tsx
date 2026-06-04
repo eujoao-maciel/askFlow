@@ -1,100 +1,206 @@
-import { View, Text, Pressable, StyleSheet } from "react-native"
-import Ionicons from "@expo/vector-icons/Ionicons"
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
-    prevStep: () => void
-    nextStep: () => void
-    handleClose: () => void
-}
+  prevStep: () => void;
+  nextStep: () => void;
+  handleClose: () => void;
+};
 
-const responseWayOptions = [
-    {
-        id: "formal",
-        label: "Formal",
-        icon: ""
-    }
-]
+export const responseWayOptions = [
+  {
+    id: "formal",
+    label: "Formal",
+    icon: "document-text-outline",
+  },
+  {
+    id: "well-described",
+    label: "Bem Descrita",
+    icon: "book-outline",
+  },
+  {
+    id: "creative",
+    label: "Criativa",
+    icon: "bulb-outline",
+  },
+  {
+    id: "concise",
+    label: "Concisa",
+    icon: "create-outline",
+  },
+];
 
 export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
-    return (
-        <View style={styles.modalBox}>
-            <View style={styles.header}>
-                <Text style={styles.title}>Como você quer sua resposta?</Text>
-            </View>
+  const [selectedOption, setSelectedOption] = useState<string | null>(null)
 
-            <View style={styles.footer}>
-                <Pressable onPress={prevStep} style={styles.closeButton}>
-                    <Ionicons
-                        style={styles.arrowBack}
-                        name="arrow-back"
-                        size={16}
-                        color="black"
-                    />
-                </Pressable>
+  return (
+    <View style={styles.modalBox}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Como você quer sua resposta?</Text>
+      </View>
 
-                <Pressable onPress={nextStep} style={styles.confirmButton}>
-                    <Text style={styles.confirmButtonText}>Confirm</Text>
-                </Pressable>
-            </View>
-        </View>
-    )
-}
+      <View style={styles.optionGrid}>
+        {responseWayOptions.map((option) => {
+          const isSelected = selectedOption === option.id;
+
+          return (
+            <Pressable
+              key={option.id}
+              onPress={() => setSelectedOption(option.id)}
+              style={[
+                styles.optionCard,
+                isSelected && styles.optionCardSelected,
+              ]}
+            >
+              <Ionicons
+                name={option.icon as any}
+                size={18}
+                color={isSelected ? "#315f7d" : "#5b7486"}
+              />
+
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}
+              >
+                {option.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <TextInput
+        style={styles.textInput}
+        placeholder="Ou digite o tipo desejado"
+      />
+
+      <View style={styles.footer}>
+        <Pressable onPress={prevStep} style={styles.closeButton}>
+          <Ionicons
+            style={styles.arrowBack}
+            name="arrow-back"
+            size={16}
+            color="black"
+          />
+        </Pressable>
+
+        <Pressable onPress={nextStep} style={styles.confirmButton}>
+          <Text style={styles.confirmButtonText}>Confirm</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    modalBox: {
-        width: "85%",
-        minHeight: 300,
-        backgroundColor: "#fff",
-        padding: 24,
-        borderRadius: 20,
-        justifyContent: "space-between",
-    },
+  modalBox: {
+    width: "90%",
+    maxWidth: 400,
+    minWidth: 280,
+    backgroundColor: "#fff",
+    borderRadius: 18,
+    padding: 18,
+    gap: 18,
+  },
 
-    header: {
-        gap: 16,
-    },
+  header: {
+    alignItems: "center",
+  },
 
-    title: {
-        fontSize: 20,
-        fontWeight: "600",
-        textAlign: "center",
-    },
+  title: {
+    fontSize: 17,
+    fontWeight: "600",
+    textAlign: "center",
+    color: "#23313d",
+    lineHeight: 24,
+  },
 
-    footer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 12,
-    },
+  optionGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+    alignItems: "flex-start",
+  },
 
-    closeButton: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#e7edf2",
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 12,
-        alignItems: "center",
-    },
+  optionCard: {
+    flexBasis: "48%",
+    minHeight: 68,
 
-    confirmButton: {
-        flex: 1,
-        backgroundColor: "#3e6785",
-        paddingVertical: 12,
-        paddingHorizontal: 28,
-        borderRadius: 12,
-        alignItems: "center",
-    },
+    borderWidth: 1,
+    borderColor: "#d4dde4",
+    borderRadius: 14,
 
-    arrowBack: {
-        fontSize: 16,
-        fontWeight: "500",
-    },
+    paddingHorizontal: 14,
+    paddingVertical: 12,
 
-    confirmButtonText: {
-        fontSize: 16,
-        fontWeight: "500",
-        color: "#fff",
-    },
-})
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 12,
+
+    backgroundColor: "#fff",
+  },
+
+  optionCardSelected: {
+    backgroundColor: "#eef5fa",
+    borderColor: "#3e6785",
+  },
+
+  optionText: {
+    fontSize: 12,
+    lineHeight: 16,
+    color: "#33414d",
+    fontWeight: "500",
+  },
+
+  optionTextSelected: {
+    color: "#234b66",
+  },
+
+  footer: {
+    flexDirection: "row",
+    gap: 10,
+  },
+
+  closeButton: {
+    flex: 1,
+    backgroundColor: "#edf2f5",
+    borderRadius: 12,
+    paddingVertical: 12,
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  confirmButton: {
+    flex: 1,
+    backgroundColor: "#3e6785",
+    borderRadius: 12,
+    paddingVertical: 12,
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  closeButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#31414d",
+  },
+
+  confirmButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#fff",
+  },
+  textInput: {
+    height: 40,
+    borderColor: "#d4dde4",
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+  },
+});
