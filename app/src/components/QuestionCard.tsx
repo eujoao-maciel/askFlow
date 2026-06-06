@@ -5,7 +5,7 @@ export const QuestionCard = ({ onOpenModal }: { onOpenModal: () => void }) => {
     return (
         <View style={styles.card}>
             <TextInput
-                placeholder="Ask a question"
+                placeholder="O que deseja saber?"
                 placeholderTextColor="#6f7c87"
                 multiline
                 style={styles.input}

@@ -18,7 +18,7 @@ export default function Index() {
         <View style={styles.container}>
             <HomeHeader />
             <QuestionCard onOpenModal={() => setIsModalVisible(true)} />{" "}
-            <Text style={styles.welcome}>Welcome</Text>{" "}
+            <Text style={styles.welcome}>Bem-vindo!</Text>{" "}
             <AskFlowModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} />
         </View>
     )

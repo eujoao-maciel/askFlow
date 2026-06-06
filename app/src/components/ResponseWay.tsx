@@ -88,7 +88,7 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
         </Pressable>
 
         <Pressable onPress={nextStep} style={styles.confirmButton}>
-          <Text style={styles.confirmButtonText}>Confirm</Text>
+          <Text style={styles.confirmButtonText}>Confirmar</Text>
         </Pressable>
       </View>
     </View>

@@ -4,7 +4,7 @@ export const HomeHeader = () => {
   return (
     <View style={styles.header}>
       <Text style={styles.logo}>askFlow</Text>
-      <Text style={styles.subtitle}>ASK · CREATE REQUEST</Text>
+      <Text style={styles.subtitle}>ASK · Faça Uma Pergunta</Text>
     </View>
   );
 };

@@ -77,11 +77,11 @@ export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
 
       <View style={styles.footer}>
         <Pressable onPress={handleClose} style={styles.closeButton}>
-          <Text style={styles.closeButtonText}>Close</Text>
+          <Text style={styles.closeButtonText}>Fechar</Text>
         </Pressable>
 
         <Pressable onPress={nextStep} style={styles.confirmButton}>
-          <Text style={styles.confirmButtonText}>Continue</Text>
+          <Text style={styles.confirmButtonText}>Continuar</Text>
         </Pressable>
       </View>
     </View>
