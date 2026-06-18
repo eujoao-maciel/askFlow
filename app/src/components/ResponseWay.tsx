@@ -80,7 +80,6 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
       <View style={styles.footer}>
         <Pressable onPress={prevStep} style={styles.closeButton}>
           <Ionicons
-            style={styles.arrowBack}
             name="arrow-back"
             size={16}
             color="black"

@@ -1,9 +1,9 @@
-import { StyleSheet, Modal, View, Text, Pressable } from "react-native";
+import { StyleSheet, Modal, View } from "react-native";
 import { useState } from "react";
 
-import { ProfessionalCard } from "./ProfessionalCard.tsx";
-import { ResponseWay } from "./ResponseWay.tsx";
-import { ResponseCard } from "./ResponseCard.tsx";
+import { ProfessionalCard } from "./ProfessionalCard";
+import { ResponseWay } from "./ResponseWay";
+import { ResponseCard } from "./ResponseCard";
 
 type Props = {
   isVisible: boolean;
@@ -41,7 +41,8 @@ export const AskFlowModal = ({ isVisible, onClose }: Props) => {
           )}
           {step === 3 && (
             <>
-              <ResponseCard 
+              <ResponseCard
+                response="Sua resposta aparecerá aqui."
                 handleClose={handleClose}
               />
             </>

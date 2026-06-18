@@ -1,14 +1,7 @@
-import {
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
-    Modal,
-    Pressable,
-} from "react-native"
-import { HomeHeader } from "./src/components/HomeHeader.tsx"
-import { QuestionCard } from "./src/components/QuestionCard.tsx"
-import { AskFlowModal } from "./src/components/AskFlowModal.tsx"
+import { StyleSheet, Text, View } from "react-native"
+import { HomeHeader } from "./src/components/HomeHeader"
+import { QuestionCard } from "./src/components/QuestionCard"
+import { AskFlowModal } from "./src/components/AskFlowModal"
 import { useState } from "react"
 
 export default function Index() {
