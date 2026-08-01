@@ -1,13 +1,25 @@
 import { StyleSheet, TextInput, View, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
-export const QuestionCard = ({ onOpenModal }: { onOpenModal: () => void }) => {
+type questionCardProps = {
+    question: string
+    setQuestion: (value: string) => void
+    onOpenModal: () => void
+}
+
+export const QuestionCard = ({
+    question,
+    setQuestion,
+    onOpenModal,
+}: questionCardProps) => {
     return (
         <View style={styles.card}>
             <TextInput
                 placeholder="O que deseja saber?"
                 placeholderTextColor="#6f7c87"
                 multiline
+                value={question}
+                onChangeText={setQuestion}
                 style={styles.input}
             />
 

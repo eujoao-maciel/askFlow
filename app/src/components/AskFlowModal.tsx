@@ -1,16 +1,41 @@
+import { Dispatch, SetStateAction, useState } from "react";
 import { StyleSheet, Modal, View } from "react-native";
-import { useState } from "react";
 
 import { ProfessionalCard } from "./ProfessionalCard";
 import { ResponseWay } from "./ResponseWay";
 import { ResponseCard } from "./ResponseCard";
 
-type Props = {
+type askFlowModalProps = {
   isVisible: boolean;
   onClose: () => void;
+  question: string;
+  professionalType: string;
+  responseStyle: string;
+  answer: string;
+  loading: boolean;
+  error: string | null;
+  setProfessionalType: Dispatch<SetStateAction<string>>;
+  setResponseStyle: Dispatch<SetStateAction<string>>;
+  setAnswer: Dispatch<SetStateAction<string>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  setError: Dispatch<SetStateAction<string | null>>;
 };
 
-export const AskFlowModal = ({ isVisible, onClose }: Props) => {
+export const AskFlowModal = ({
+  isVisible,
+  onClose,
+  question,
+  professionalType,
+  responseStyle,
+  answer,
+  loading,
+  error,
+  setProfessionalType,
+  setResponseStyle,
+  setAnswer,
+  setLoading,
+  setError,
+}: askFlowModalProps) => {
   const [step, setStep] = useState(1);
 
   const handleClose = () => {
@@ -25,7 +50,10 @@ export const AskFlowModal = ({ isVisible, onClose }: Props) => {
           {step === 1 && (
             <>
               <ProfessionalCard
-                nextStep={() => setStep(2)}
+                nextStep={(value) => {
+                  setProfessionalType(value);
+                  setStep(2);
+                }}
                 handleClose={handleClose}
               />
             </>
@@ -34,7 +62,10 @@ export const AskFlowModal = ({ isVisible, onClose }: Props) => {
             <>
               <ResponseWay
                 prevStep={() => setStep(1)}
-                nextStep={() => setStep(3)}
+                nextStep={(value) => {
+                  setResponseStyle(value);
+                  setStep(3);
+                }}
                 handleClose={handleClose}
               />
             </>
@@ -42,7 +73,18 @@ export const AskFlowModal = ({ isVisible, onClose }: Props) => {
           {step === 3 && (
             <>
               <ResponseCard
-                response="Sua resposta aparecerá aqui."
+                response={answer || "Sua resposta aparecerá aqui."}
+                subtitle={
+                  [
+                    question,
+                    professionalType,
+                    responseStyle,
+                    loading ? "Carregando..." : null,
+                    error,
+                  ]
+                    .filter(Boolean)
+                    .join(" • ") || undefined
+                }
                 handleClose={handleClose}
               />
             </>

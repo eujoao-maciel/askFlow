@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
   prevStep: () => void;
-  nextStep: () => void;
+  nextStep: (value: string) => void;
   handleClose: () => void;
 };
 
@@ -33,6 +33,7 @@ export const responseWayOptions = [
 
 export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const [freeTextValue, setFreeTextValue] = useState("")
 
   return (
     <View style={styles.modalBox}>
@@ -75,6 +76,8 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
       <TextInput
         style={styles.textInput}
         placeholder="Ou digite o tipo desejado"
+        value={freeTextValue}
+        onChangeText={setFreeTextValue}
       />
 
       <View style={styles.footer}>
@@ -86,7 +89,10 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
           />
         </Pressable>
 
-        <Pressable onPress={nextStep} style={styles.confirmButton}>
+        <Pressable
+          onPress={() => nextStep(selectedOption ?? freeTextValue.trim())}
+          style={styles.confirmButton}
+        >
           <Text style={styles.confirmButtonText}>Confirmar</Text>
         </Pressable>
       </View>

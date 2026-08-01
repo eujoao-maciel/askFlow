@@ -2,8 +2,8 @@ import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-type Props = {
-  nextStep: () => void;
+type ProfessionalCardProps = {
+  nextStep: (value: string) => void;
   handleClose: () => void;
 };
 
@@ -30,8 +30,9 @@ const options = [
   },
 ];
 
-export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
+export const ProfessionalCard = ({ nextStep, handleClose }: ProfessionalCardProps) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [freeTextValue, setFreeTextValue] = useState("");
 
   return (
     <View style={styles.modalBox}>
@@ -73,14 +74,22 @@ export const ProfessionalCard = ({ nextStep, handleClose }: Props) => {
         })}
       </View>
 
-      <TextInput style={styles.textInput} placeholder="Ou digite o tipo desejado" />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Ou digite o tipo desejado"
+        value={freeTextValue}
+        onChangeText={setFreeTextValue}
+      />
 
       <View style={styles.footer}>
         <Pressable onPress={handleClose} style={styles.closeButton}>
           <Text style={styles.closeButtonText}>Fechar</Text>
         </Pressable>
 
-        <Pressable onPress={nextStep} style={styles.confirmButton}>
+        <Pressable
+          onPress={() => nextStep(selectedOption ?? freeTextValue.trim())}
+          style={styles.confirmButton}
+        >
           <Text style={styles.confirmButtonText}>Continuar</Text>
         </Pressable>
       </View>
