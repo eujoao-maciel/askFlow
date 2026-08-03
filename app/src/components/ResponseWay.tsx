@@ -1,4 +1,11 @@
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -6,6 +13,7 @@ type Props = {
   prevStep: () => void;
   nextStep: (value: string) => void;
   handleClose: () => void;
+  loading?: boolean;
 };
 
 export const responseWayOptions = [
@@ -31,9 +39,14 @@ export const responseWayOptions = [
   },
 ];
 
-export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null)
-  const [freeTextValue, setFreeTextValue] = useState("")
+export const ResponseWay = ({
+  prevStep,
+  nextStep,
+  handleClose,
+  loading = false,
+}: Props) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [freeTextValue, setFreeTextValue] = useState("");
 
   return (
     <View style={styles.modalBox}>
@@ -81,19 +94,27 @@ export const ResponseWay = ({ prevStep, nextStep, handleClose }: Props) => {
       />
 
       <View style={styles.footer}>
-        <Pressable onPress={prevStep} style={styles.closeButton}>
-          <Ionicons
-            name="arrow-back"
-            size={16}
-            color="black"
-          />
+        <Pressable
+          onPress={prevStep}
+          style={styles.closeButton}
+          disabled={loading}
+        >
+          <Ionicons name="arrow-back" size={16} color="black" />
         </Pressable>
 
         <Pressable
           onPress={() => nextStep(selectedOption ?? freeTextValue.trim())}
-          style={styles.confirmButton}
+          style={[
+            styles.confirmButton,
+            loading && styles.confirmButtonDisabled,
+          ]}
+          disabled={loading}
         >
-          <Text style={styles.confirmButtonText}>Confirmar</Text>
+          {loading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Text style={styles.confirmButtonText}>Confirmar</Text>
+          )}
         </Pressable>
       </View>
     </View>
@@ -174,19 +195,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#edf2f5",
     borderRadius: 12,
     paddingVertical: 12,
-
     justifyContent: "center",
     alignItems: "center",
   },
 
   confirmButton: {
     flex: 1,
+    minHeight: 44,
     backgroundColor: "#3e6785",
     borderRadius: 12,
     paddingVertical: 12,
-
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  confirmButtonDisabled: {
+    opacity: 0.7,
   },
 
   closeButtonText: {
@@ -200,6 +224,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#fff",
   },
+
   textInput: {
     height: 40,
     borderColor: "#d4dde4",

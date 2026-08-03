@@ -1,12 +1,14 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { StyleSheet, Modal, View } from "react-native";
 
+import { askQuestion } from "../services/api";
 import { ProfessionalCard } from "./ProfessionalCard";
 import { ResponseWay } from "./ResponseWay";
 import { ResponseCard } from "./ResponseCard";
 
-type askFlowModalProps = {
+type AskFlowModalProps = {
   isVisible: boolean;
+  initialStep: 1 | 2 | 3;
   onClose: () => void;
   question: string;
   professionalType: string;
@@ -23,6 +25,7 @@ type askFlowModalProps = {
 
 export const AskFlowModal = ({
   isVisible,
+  initialStep,
   onClose,
   question,
   professionalType,
@@ -35,12 +38,50 @@ export const AskFlowModal = ({
   setAnswer,
   setLoading,
   setError,
-}: askFlowModalProps) => {
-  const [step, setStep] = useState(1);
+}: AskFlowModalProps) => {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+
+  useEffect(() => {
+    if (isVisible) {
+      setStep(initialStep);
+      return;
+    }
+
+    setStep(1);
+  }, [isVisible, initialStep]);
 
   const handleClose = () => {
-    setStep(1);
     onClose();
+  };
+
+  const handleProfessionalTypeNext = (value: string) => {
+    setProfessionalType(value);
+    setStep(2);
+  };
+
+  const handleResponseStyleNext = async (value: string) => {
+    setResponseStyle(value);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { answer } = await askQuestion({
+        question,
+        professionalType,
+        responseStyle: value,
+      });
+
+      setAnswer(answer);
+      setStep(3);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Erro ao consultar a API";
+      setError(message);
+      setAnswer("");
+      setStep(3);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,46 +89,32 @@ export const AskFlowModal = ({
       <View style={styles.overlay}>
         <View style={styles.modalBox}>
           {step === 1 && (
-            <>
-              <ProfessionalCard
-                nextStep={(value) => {
-                  setProfessionalType(value);
-                  setStep(2);
-                }}
-                handleClose={handleClose}
-              />
-            </>
+            <ProfessionalCard
+              nextStep={handleProfessionalTypeNext}
+              handleClose={handleClose}
+            />
           )}
+
           {step === 2 && (
-            <>
-              <ResponseWay
-                prevStep={() => setStep(1)}
-                nextStep={(value) => {
-                  setResponseStyle(value);
-                  setStep(3);
-                }}
-                handleClose={handleClose}
-              />
-            </>
+            <ResponseWay
+              prevStep={() => setStep(1)}
+              nextStep={handleResponseStyleNext}
+              handleClose={handleClose}
+              loading={loading}
+            />
           )}
+
           {step === 3 && (
-            <>
-              <ResponseCard
-                response={answer || "Sua resposta aparecerá aqui."}
-                subtitle={
-                  [
-                    question,
-                    professionalType,
-                    responseStyle,
-                    loading ? "Carregando..." : null,
-                    error,
-                  ]
-                    .filter(Boolean)
-                    .join(" • ") || undefined
-                }
-                handleClose={handleClose}
-              />
-            </>
+            <ResponseCard
+              response={error ?? answer}
+              subtitle={
+                [question, professionalType, responseStyle]
+                  .filter(Boolean)
+                  .join(" • ") || undefined
+              }
+              handleClose={handleClose}
+              loading={loading}
+            />
           )}
         </View>
       </View>

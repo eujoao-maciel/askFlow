@@ -1,9 +1,9 @@
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 type askQuestionType = {
-  question: "string";
-  professionalType: "string";
-  responseStyle: "string";
+  question: string;
+  professionalType?: string;
+  responseStyle?: string;
 };
 
 export const askQuestion = async ({
