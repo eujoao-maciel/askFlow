@@ -30,7 +30,10 @@ const options = [
   },
 ];
 
-export const ProfessionalCard = ({ nextStep, handleClose }: ProfessionalCardProps) => {
+export const ProfessionalCard = ({
+  nextStep,
+  handleClose,
+}: ProfessionalCardProps) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [freeTextValue, setFreeTextValue] = useState("");
 
@@ -77,6 +80,7 @@ export const ProfessionalCard = ({ nextStep, handleClose }: ProfessionalCardProp
       <TextInput
         style={styles.textInput}
         placeholder="Ou digite o tipo desejado"
+        placeholderTextColor="#8b98a5"
         value={freeTextValue}
         onChangeText={setFreeTextValue}
       />
@@ -204,5 +208,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 12,
+    color: "#1f2937",
   },
 });
