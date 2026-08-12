@@ -67,11 +67,6 @@
       <td>UI</td>
       <td>React Native Reanimated | Gesture Handler | Expo Vector Icons</td>
    </tr>
-
-   <tr>
-      <td>AI</td>
-      <td>OpenAI (Codex)</td>
-   </tr>
 </table>
 
 <h2 align="center" id="Layout">Layout</h2>
