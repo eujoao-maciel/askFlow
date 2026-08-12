@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+<h1 align="center">askFlow</h1>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<div align="center">
+ <a href="#About">About</a> |
+ <a href="#Features">Features</a> |
+ <a href="#Stack">Stack</a> |
+ <a href="#Layout">Layout</a> |
+ <a href="#Author">Author</a> 
+</div>
 
-## Get started
+--- 
 
-1. Install dependencies
+<p align="center">A customizable AI assistant that adapts its answers to the professional you need and the style you want.</p>
 
-   ```bash
-   npm install
-   ```
+<h2 align="center" id="About">About</h2>
+<p align="center">
+  You type a question, choose who should answer it (teacher, consultant, tutor, career specialist, or any custom type) and how you want the answer: formal, well described, creative or concise. The app sends everything to an API that returns the answer shaped the way you asked. If you don't want to configure anything, you can just send the question with a single tap. A personal project to practice Expo and React Native integrated with an API.
+</p>
 
-2. Start the app
+<h2 align="center" id="Features">Features</h2>
+<table align="center">
+   <tr>
+      <th>Feature</th>
+      <th>Description</th>
+   </tr>
 
-   ```bash
-   npx expo start
-   ```
+   <tr>
+      <td>Ask a question</td>
+      <td>Simple input on the home screen to type any question</td>
+   </tr>
 
-In the output, you'll find options to open the app in a
+   <tr>
+      <td>Professional type</td>
+      <td>Choose who answers: teacher, academic consultant, online tutor, career specialist, or a custom type</td>
+   </tr>
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   <tr>
+      <td>Response style</td>
+      <td>Choose how the answer sounds: formal, well-described, creative, concise, or a custom style</td>
+   </tr>
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   <tr>
+      <td>Quick send</td>
+      <td>Skip the customization steps and get an instant AI answer with default settings</td>
+   </tr>
 
-## Get a fresh project
+   <tr>
+      <td>Guided flow modal</td>
+      <td>Step-by-step modal that walks through professional type, response style, and the final answer</td>
+   </tr>
+</table>
 
-When you're ready, run:
+<h2 align="center" id="Stack">Stack</h2>
 
-```bash
-npm run reset-project
-```
+<table align="center">
+   <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+   </tr>
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+   <tr>
+      <td>Mobile</td>
+      <td>React Native | Expo | Expo Router | TypeScript</td>
+   </tr>
 
-## Learn more
+   <tr>
+      <td>UI</td>
+      <td>React Native Reanimated | Gesture Handler | Expo Vector Icons</td>
+   </tr>
 
-To learn more about developing your project with Expo, look at the following resources:
+   <tr>
+      <td>AI</td>
+      <td>OpenAI (Codex)</td>
+   </tr>
+</table>
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+<h2 align="center" id="Layout">Layout</h2>
 
-## Join the community
+<p align="center">
+  <img width="250" src="https://raw.githubusercontent.com/eujoao-maciel/askFlow/main/assets/mainSream.jpeg" />
+  <img width="250" src="https://raw.githubusercontent.com/eujoao-maciel/askFlow/main/assets/professionalTypeModal.jpeg" />
+  <img width="250" src="https://raw.githubusercontent.com/eujoao-maciel/askFlow/main/assets/responseWayModal.jpeg" />
+</p>
 
-Join our community of developers creating universal apps.
+<p align="center">
+  <img width="250" src="https://raw.githubusercontent.com/eujoao-maciel/askFlow/main/assets/responseModal.jpeg" />
+</p>
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<h2 align="center" id="Author">Author</h2>
+<div align="center">
+  <p>jota</p>
+</div>
